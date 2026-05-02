@@ -352,7 +352,7 @@ section { padding: 90px 0; }
   background: rgba(255,255,255,0.05);
 }
 .course-card-icon { font-size: 40px; margin-bottom: 14px; display: block; }
-..course-card-header h3 {
+.course-card-header h3 {
   color: white;
   font-size: 20px;
   font-weight: 800;
