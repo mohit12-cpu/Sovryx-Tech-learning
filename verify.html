@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Verify Certificate — Sovryx Tech Learn</title>
+  <meta name="description" content="Verify your Sovryx Tech course completion certificate."/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <style>
+    .verify-coming-soon-page {
+      min-height: calc(100vh - 68px);
+      background: linear-gradient(135deg, var(--dark) 0%, var(--blue) 60%, #1a3a7c 100%);
+      display: flex; align-items: center; justify-content: center;
+      padding: 60px 2rem;
+      position: relative; overflow: hidden;
+    }
+    .verify-coming-soon-page::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(255,107,0,0.18) 0%, transparent 55%),
+                  radial-gradient(ellipse at 20% 80%, rgba(45,107,228,0.25) 0%, transparent 45%);
+    }
+    .verify-coming-soon-page .hero-grid {
+      position: absolute; inset: 0; opacity: 0.04;
+      background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .cs-card {
+      position: relative; z-index: 1;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.13);
+      border-radius: 32px;
+      backdrop-filter: blur(24px);
+      padding: 60px 52px;
+      max-width: 580px; width: 100%;
+      text-align: center;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.35);
+    }
+    .cs-icon-ring {
+      width: 100px; height: 100px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+      margin: 0 auto 28px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 48px;
+      box-shadow: 0 16px 48px rgba(255,107,0,0.4);
+      animation: iconBounce 3s ease-in-out infinite;
+    }
+    @keyframes iconBounce {
+      0%,100% { transform: translateY(0) rotate(0deg); }
+      50%      { transform: translateY(-10px) rotate(-4deg); }
+    }
+    .cs-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,107,0,0.18); border: 1px solid rgba(255,107,0,0.45);
+      color: #FF8C3A; padding: 7px 18px; border-radius: 100px;
+      font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .cs-badge::before {
+      content: ''; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--orange); animation: pulse 1.8s infinite;
+    }
+    .cs-card h1 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(36px, 6vw, 52px);
+      color: white; letter-spacing: 2px; line-height: 1; margin-bottom: 16px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+    .cs-card h1 span { color: var(--orange); text-shadow: 0 2px 4px rgba(255,107,0,0.3); }
+    .cs-card p {
+      color: rgba(255,255,255,0.9); font-size: 15px; font-weight: 500; line-height: 1.7;
+      margin-bottom: 36px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+
+    /* Fake input preview (disabled/visual only) */
+    .verify-preview {
+      display: flex; gap: 10px; margin-bottom: 14px;
+      opacity: 0.45; pointer-events: none;
+    }
+    .verify-preview input {
+      flex: 1; padding: 14px 18px;
+      background: rgba(255,255,255,0.08); border: 2px solid rgba(255,255,255,0.15);
+      border-radius: 12px; color: rgba(255,255,255,0.5);
+      font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 700;
+      letter-spacing: 4px; text-align: center; text-transform: uppercase;
+      outline: none;
+    }
+    .verify-preview input::placeholder { color: rgba(255,255,255,0.3); letter-spacing: 3px; }
+    .verify-preview button {
+      background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+      color: white; font-weight: 800; font-size: 14px; border: none;
+      padding: 14px 22px; border-radius: 12px; cursor: not-allowed; white-space: nowrap;
+    }
+
+    .coming-soon-label {
+      font-size: 12px; color: rgba(255,255,255,0.35); font-weight: 600;
+      letter-spacing: 1px; margin-bottom: 36px;
+    }
+
+    /* Progress dots */
+    .progress-dots {
+      display: flex; justify-content: center; gap: 10px; margin-bottom: 36px;
+    }
+    .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+    }
+    .dot.active { background: var(--orange); }
+    .dot.done { background: rgba(255,255,255,0.5); }
+
+    /* Features coming */
+    .features-preview {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+      margin-bottom: 36px;
+    }
+    .fp-item {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 14px; padding: 16px 14px;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      opacity: 0.7;
+    }
+    .fp-item span:first-child { font-size: 24px; }
+    .fp-item span:last-child { color: rgba(255,255,255,0.7); font-size: 12px; font-weight: 700; text-align: center; }
+
+    .cs-divider {
+      height: 1px; background: rgba(255,255,255,0.1); margin: 28px 0;
+    }
+
+    /* Notify form */
+    .notify-row {
+      display: flex; gap: 10px;
+    }
+    .notify-row input {
+      flex: 1; padding: 13px 16px;
+      background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2);
+      border-radius: 12px; color: var(--dark); font-family: 'Nunito', sans-serif;
+      font-size: 14px; font-weight: 600; outline: none; transition: border-color 0.2s;
+      backdrop-filter: blur(10px);
+    }
+    .notify-row input:focus { border-color: var(--orange); background: rgba(255,255,255,0.15); }
+    .notify-row input::placeholder { color: var(--gray); }
+    .notify-btn {
+      background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+      color: white; font-weight: 800; font-size: 13px; border: none;
+      padding: 13px 20px; border-radius: 12px; cursor: pointer; white-space: nowrap;
+      transition: 0.2s;
+    }
+    .notify-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255,107,0,0.45); }
+
+    .notify-success {
+      display: none; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.4);
+      border-radius: 12px; padding: 14px 20px;
+      color: #6ee7b7; font-size: 14px; font-weight: 700; text-align: center; margin-top: 10px;
+    }
+
+    @media (max-width: 560px) {
+      .cs-card { padding: 40px 28px; }
+      .features-preview { grid-template-columns: 1fr 1fr; }
+      .notify-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="navContainer"></div>
+
+  <div class="page-content">
+    <div class="verify-coming-soon-page">
+      <div class="hero-grid"></div>
+
+      <!-- Floating shapes -->
+      <div style="position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,0,0.1),transparent);top:5%;right:5%;animation:floatAnim 7s ease-in-out infinite;pointer-events:none;"></div>
+      <div style="position:absolute;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(45,107,228,0.2),transparent);bottom:10%;left:8%;animation:floatAnim 5s ease-in-out infinite 1.5s;pointer-events:none;"></div>
+
+      <div class="cs-card">
+
+        <div class="cs-icon-ring">🏅</div>
+
+        <div class="cs-badge">Coming Soon</div>
+
+        <h1>Verify Your<br><span>Certificate</span></h1>
+
+        <p>
+          Our certificate verification system is currently under development.
+          Soon, every graduate of Sovryx Tech courses will be able to instantly
+          verify their certificate online using a unique Certificate ID.
+        </p>
+
+        <!-- Disabled preview of the feature -->
+        <div class="verify-preview">
+          <input type="text" placeholder="ENTER CERT ID (e.g. STC-2025-001)" disabled />
+          <button disabled>Verify →</button>
+        </div>
+        <p class="coming-soon-label">⛔ Verification not available yet</p>
+
+        <!-- What's coming -->
+        <div class="features-preview">
+          <div class="fp-item">
+            <span>🔍</span>
+            <span>Instant Lookup by Certificate ID</span>
+          </div>
+          <div class="fp-item">
+            <span>👤</span>
+            <span>Student Name & Course Details</span>
+          </div>
+          <div class="fp-item">
+            <span>📅</span>
+            <span>Completion Date & Batch Info</span>
+          </div>
+          <div class="fp-item">
+            <span>✅</span>
+            <span>Authentic Certificate Proof</span>
+          </div>
+        </div>
+
+        <div class="cs-divider"></div>
+
+        <!-- Notify section -->
+        <p style="color:white;font-size:14px;font-weight:700;margin-bottom:14px;text-shadow:0 1px 2px rgba(0,0,0,0.5);">
+          🔔 Get notified when it launches — enter your phone number:
+        </p>
+        <div class="notify-row">
+          <input type="tel" id="notifyPhone" placeholder="98XXXXXXXX" maxlength="10" />
+          <button class="notify-btn" onclick="submitNotify()">Notify Me</button>
+        </div>
+        <div class="notify-success" id="notifySuccess">
+          ✅ Thanks! We'll notify you on WhatsApp when the verify system goes live.
+        </div>
+
+        <div class="cs-divider"></div>
+
+        <!-- CTA back -->
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <a href="courses.html" class="btn-primary" style="font-size:14px;padding:12px 22px;">Browse Courses →</a>
+          <a href="register.html" class="btn-outline" style="font-size:14px;padding:11px 20px;">Register Now</a>
+        </div>
+
+        <p style="color:rgba(255,255,255,0.25);font-size:12px;font-weight:600;margin-top:24px;">
+          🌐 sovryxtech.info.np &nbsp;|&nbsp; Sovryx Tech Pvt. Ltd., Biratnagar
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="footerContainer"></div>
+
+  <script src="main.js"></script>
+  
+
+  <script>
+    injectLayout("Verify Certificate");
+
+    function submitNotify() {
+      const phone = document.getElementById('notifyPhone').value.trim();
+      const input = document.getElementById('notifyPhone');
+      if (phone.length < 10) {
+        input.style.borderColor = 'rgba(239,68,68,0.7)';
+        input.placeholder = 'Enter a valid 10-digit number';
+        return;
+      }
+      document.getElementById('notifySuccess').style.display = 'block';
+      input.style.borderColor = 'rgba(16,185,129,0.5)';
+      const msg = encodeURIComponent('Hi Sovryx Tech! Please notify me when the Certificate Verification system goes live. My number: ' + phone);
+      input.value = '';
+      setTimeout(() => { window.open('https://wa.me/9779762948720?text=' + msg, '_blank'); }, 800);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const inp = document.getElementById('notifyPhone');
+      if (inp) inp.addEventListener('keypress', function(e) { if (e.key === 'Enter') submitNotify(); });
+    });
+  </script>
+</body>
+</html>

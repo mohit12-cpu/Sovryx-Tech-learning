@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register for a Course — Sovryx Tech Learn</title>
+  <meta name="description" content="Register for IT workshops and courses by Sovryx Tech in Biratnagar, Nepal."/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <style>
+    .gform-wrapper {
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(26,58,124,0.07);
+    }
+    .gform-header {
+      background: linear-gradient(135deg, var(--blue), var(--dark));
+      padding: 28px 36px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .gform-header-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+      display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0;
+    }
+    .gform-header h2 { color: white; font-family: 'Bebas Neue', cursive; font-size: 28px; letter-spacing: 1px; }
+    .gform-header p { color: rgba(255,255,255,0.65); font-size: 13px; margin-top: 2px; }
+    .gform-body { padding: 0; }
+    .gform-body iframe {
+      width: 100%; border: none; display: block;
+      min-height: 820px;
+    }
+    .gform-notice {
+      background: var(--off-white);
+      border-top: 1px solid var(--gray-light);
+      padding: 16px 36px;
+      display: flex; align-items: center; gap: 10px;
+      font-size: 12px; color: var(--gray); font-weight: 600;
+    }
+    .step-card {
+      background: rgba(255,255,255,0.1); backdrop-filter: blur(15px);
+      border-radius: 16px; padding: 24px;
+      display: flex; gap: 16px; align-items: flex-start;
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 8px 32px rgba(255,255,255,0.1), 0 4px 16px rgba(0,0,0,0.1);
+      margin-bottom: 16px;
+    }
+    .step-card h4 { color: var(--dark) !important; text-shadow: 0 1px 2px rgba(255,255,255,0.8) !important; }
+    .step-card p { color: var(--text) !important; text-shadow: 0 1px 2px rgba(255,255,255,0.6) !important; }
+    .step-num {
+      width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', cursive; font-size: 20px; color: white; letter-spacing: 1px;
+    }
+    .step-card h4 { font-size: 14px; font-weight: 800; color: var(--dark); margin-bottom: 4px; }
+    .step-card p { font-size: 13px; color: var(--gray); font-weight: 500; line-height: 1.5; }
+
+    .course-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 18px; border-radius: 10px; cursor: pointer;
+      font-size: 14px; font-weight: 700; border: 2px solid var(--gray-light);
+      background: white; color: var(--text); transition: 0.2s;
+      margin: 0 6px 10px 0;
+    }
+    .course-pill:hover, .course-pill.active {
+      border-color: var(--orange); background: rgba(255,107,0,0.06); color: var(--orange);
+    }
+    .course-pill.disabled { opacity: 0.4; cursor: not-allowed; }
+    .course-pill.disabled:hover { border-color: var(--gray-light); background: white; color: var(--text); }
+
+    .whatsapp-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #25D366; color: white; text-decoration: none;
+      padding: 14px 24px; border-radius: 12px; font-weight: 800; font-size: 15px;
+      transition: 0.2s; box-shadow: 0 4px 16px rgba(37,211,102,0.3);
+    }
+    .whatsapp-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.4); }
+  </style>
+</head>
+<body>
+
+  <div id="navContainer"></div>
+
+  <div class="page-content">
+
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+      <div class="container" style="position:relative;z-index:1;">
+        <span class="section-label" style="background:rgba(255,107,0,0.2);color:#FF8C3A;">Join Us</span>
+        <h1 style="font-family:'Bebas Neue',cursive;font-size:clamp(40px,6vw,64px);color:white;letter-spacing:2px;margin-top:10px;text-shadow:0 2px 4px rgba(0,0,0,0.5);">
+          Register for a <span style="color:var(--orange);text-shadow:0 2px 4px rgba(255,107,0,0.3);">Course</span>
+        </h1>
+        <p style="color:rgba(255,255,255,0.9);font-size:16px;margin-top:10px;position:relative;text-shadow:0 1px 2px rgba(0,0,0,0.5);">
+          Fill in the form below to secure your seat. Limited seats per batch!
+        </p>
+      </div>
+    </div>
+
+    <!-- COURSE SELECTOR BAR -->
+    <div style="background:white;border-bottom:1px solid var(--gray-light);padding:16px 0;position:relative;z-index:99;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+      <div class="container">
+        <div style="display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap;">
+          <span style="font-size:13px;font-weight:800;color:var(--gray);letter-spacing:1px;text-transform:uppercase;white-space:nowrap;margin-top:6px;">Select Course:</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span class="course-pill active" id="pill-photoshop" onclick="selectCourse('photoshop')"><img src="images/photoshop.png" alt="Photoshop Workshop" width="24" height="24"> Photoshop Workshop</span>
+            <span class="course-pill disabled" title="Coming soon">🌐 Web Design</span>
+            <span class="course-pill disabled" title="Coming soon">🐍 Python</span>
+            <span class="course-pill disabled" title="Coming soon">🤖 IoT & Arduino</span>
+            <span class="course-pill disabled" title="Coming soon">+ More Coming</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <section class="form-section">
+      <div class="container">
+        <div class="form-grid">
+
+          <!-- REGISTRATION FORM -->
+          <div class="reveal">
+            <div class="register-form">
+              <div class="register-form-header">
+                <div class="form-header-icon"> <img src="images/photoshop.png" alt="Photoshop Workshop" width="70" height="70"></div>
+                <div>
+                  <h2 id="formTitle" style="color: rgba(240, 248, 255, 0.864);">PHOTOSHOP WORKSHOP — REGISTRATION</h2>
+                  <p id="formSubtitle">1-Week Workshop · Rs. 499 Only · Certificate Included</p>
+                </div>
+              </div>
+
+              <form id="registrationForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="register-form-body">
+                <input type="hidden" name="_subject" value="New Course Registration - Photoshop Workshop">
+                <input type="hidden" name="_next" value="https://sovryxtech.info.np/register.html?success=true">
+                <input type="hidden" name="course" id="selectedCourse" value="photoshop">
+
+                <div class="form-group">
+                  <label for="fullName">Full Name *</label>
+                  <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email Address *</label>
+                  <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="98XXXXXXXX" maxlength="10">
+                  </div>
+                  <div class="form-group">
+                    <label for="age">Age *</label>
+                    <input type="number" id="age" name="age" required placeholder="18" min="13" max="65">
+                  </div>
+                </div>
+                   <div class="form-group">
+                  <label for="qualification">Qualification *</label>
+                  <input type="text" id="qualification" name="qualification" required placeholder="Enter your qualification">
+                </div>
+
+
+                <div class="form-group">
+                  <label class="checkbox-label">
+                    <input type="checkbox" name="terms" required>
+                    <span>I agree to the terms and conditions and understand the course fee is Rs. 499 *</span>
+                  </label>
+                </div>
+
+                <button type="submit" class="btn-primary form-submit">Complete Registration →</button>
+
+                <div id="formMessage" class="form-message" style="display: none;"></div>
+              </form>
+
+              <div class="form-notice">
+                <span>🔒</span>
+                Your information is safe. We only use it for course enrollment and communication.
+              </div>
+            </div>
+          </div>
+
+          <!-- SIDE INFO -->
+          <div>
+            <!-- How It Works -->
+            <div class="form-info-box reveal" style="margin-bottom:24px;">
+              <h3>HOW TO ENROLL</h3>
+              <div style="display:flex;flex-direction:column;gap:14px;">
+                <div style="display:flex;gap:12px;align-items:flex-start;">
+                  <div style="width:32px;height:32px;background:var(--orange);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:white;flex-shrink:0;">1</div>
+                  <div><strong style="color:var(--dark);font-size:14px;display:block;margin-bottom:3px;">Fill the Form</strong><span style="color:var(--gray);font-size:13px;">Complete the registration form with your details and preferred course.</span></div>
+                </div>
+                <div style="display:flex;gap:12px;align-items:flex-start;">
+                  <div style="width:32px;height:32px;background:var(--orange);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:white;flex-shrink:0;">2</div>
+                  <div><strong style="color:var(--dark);font-size:14px;display:block;margin-bottom:3px;">We Contact You</strong><span style="color:var(--gray);font-size:13px;">Our team will call or WhatsApp you within 24 hours to confirm your seat.</span></div>
+                </div>
+                <div style="display:flex;gap:12px;align-items:flex-start;">
+                  <div style="width:32px;height:32px;background:var(--orange);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:white;flex-shrink:0;">3</div>
+                  <div><strong style="color:var(--dark);font-size:14px;display:block;margin-bottom:3px;">Pay & Confirm</strong><span style="color:var(--gray);font-size:13px;">Pay Rs. 499 via eSewa / cash at our office to confirm your enrollment.</span></div>
+                </div>
+                <div style="display:flex;gap:12px;align-items:flex-start;">
+                  <div style="width:32px;height:32px;background:var(--orange);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:white;flex-shrink:0;">4</div>
+                  <div><strong style="color:var(--dark);font-size:14px;display:block;margin-bottom:3px;">Attend & Earn</strong><span style="color:var(--gray);font-size:13px;">Show up, learn, complete the final project, and receive your certificate!</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Course Highlight Card -->
+            <div class="step-card reveal" style="background:linear-gradient(135deg,rgba(255,107,0,0.07),rgba(255,107,0,0.02));border:1px solid rgba(255,107,0,0.2);">
+              <div style="font-size:32px;"><img src="images/photoshop.png" alt="Photoshop Workshop" width="32" height="32"></div>
+              <div>
+                <h4 style="color:var(--orange);font-size:16px;">Photoshop Workshop</h4>
+                <p>1 Week · Beginner Friendly · Rs. 499 Only · Certificate Included</p>
+                <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+                  <span style="background:rgba(255,107,0,0.12);color:var(--orange);font-size:11px;font-weight:800;padding:3px 10px;border-radius:20px;">⚡ Limited Seats</span>
+                  <span style="background:rgba(26,58,124,0.08);color:var(--blue);font-size:11px;font-weight:800;padding:3px 10px;border-radius:20px;">📜 Certificate</span>
+                  <span style="background:rgba(26,58,124,0.08);color:var(--blue);font-size:11px;font-weight:800;padding:3px 10px;border-radius:20px;">💻 Online</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact / WhatsApp -->
+            <div class="reveal" style="background:white;border-radius:16px;padding:24px;border:1px solid rgba(26,58,124,0.07);box-shadow:var(--shadow-card);">
+              <p style="font-size:12px;font-weight:800;letter-spacing:2px;color:var(--gray);text-transform:uppercase;margin-bottom:16px;">NEED HELP? CONTACT US</p>
+              <a href="https://wa.me/9779762948720" target="_blank" class="whatsapp-btn" style="width:100%;justify-content:center;margin-bottom:12px;">
+                <span style="font-size:20px;">💬</span> WhatsApp: 9762948720
+              </a>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                <a href="tel:9762948720" style="display:flex;align-items:center;justify-content:center;gap:6px;background:var(--off-white);border:2px solid var(--gray-light);border-radius:10px;padding:10px;text-decoration:none;color:var(--text);font-weight:700;font-size:13px;transition:0.2s;" onmouseover="this.style.borderColor='var(--blue)'" onmouseout="this.style.borderColor='var(--gray-light)'">📞 9762948720</a>
+                <a href="tel:9767115406" style="display:flex;align-items:center;justify-content:center;gap:6px;background:var(--off-white);border:2px solid var(--gray-light);border-radius:10px;padding:10px;text-decoration:none;color:var(--text);font-weight:700;font-size:13px;transition:0.2s;" onmouseover="this.style.borderColor='var(--blue)'" onmouseout="this.style.borderColor='var(--gray-light)'">📞 9767115406</a>
+              </div>
+              <p style="text-align:center;color:var(--gray);font-size:12px;font-weight:600;margin-top:12px;">📍 Biratnagar, Nepal</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div id="footerContainer"></div>
+
+  <script src="main.js"></script>
+  
+
+  <script>
+    injectLayout("Register");
+
+    // Pre-select course from URL param
+    document.addEventListener('DOMContentLoaded', function() {
+      const params = new URLSearchParams(window.location.search);
+      const course = params.get('course');
+      if (course) selectCourse(course);
+    });
+
+    function selectCourse(id) {
+      document.querySelectorAll('.course-pill:not(.disabled)').forEach(p => p.classList.remove('active'));
+      const pill = document.getElementById('pill-' + id);
+      if (pill) pill.classList.add('active');
+
+      const titles = {
+        photoshop: ['PHOTOSHOP WORKSHOP — REGISTRATION', '1-Week Workshop · Rs. 499 Only · Certificate Included']
+      };
+      if (titles[id]) {
+        document.getElementById('formTitle').textContent = titles[id][0];
+        document.getElementById('formSubtitle').textContent = titles[id][1];
+      }
+    }
+  </script>
+</body>
+</html>
